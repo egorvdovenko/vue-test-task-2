@@ -52,8 +52,8 @@ const classes = computed(() => [
     :target="target"
     @click="handleClick"
   >
-    <span v-if="loading" class="btn__spinner">
-      <svg class="btn__spinner-icon" viewBox="0 0 24 24">
+    <span v-if="loading" class="button__spinner">
+      <svg class="button__spinner-icon" viewBox="0 0 24 24">
         <circle
           cx="12"
           cy="12"
