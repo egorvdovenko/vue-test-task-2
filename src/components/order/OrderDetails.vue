@@ -107,21 +107,3 @@ const updateDescription = () => {
     </div>
   </AppCard>
 </template>
-
-<style lang="scss" scoped>
-@use '@/assets/styles/components/form-group.scss';
-
-.form-group__value--multiline {
-  line-height: 1.6;
-  white-space: pre-wrap;
-
-  :deep(ul) {
-    margin: 0.5rem 0;
-    padding-left: 1.5rem;
-  }
-
-  :deep(li) {
-    margin: 0.25rem 0;
-  }
-}
-</style>

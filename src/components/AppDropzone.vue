@@ -120,12 +120,11 @@ const handleDragOver = (event: DragEvent) => {
 
   &:hover:not(&--disabled) {
     border-color: var(--primary-color);
-    background-color: #f8fafc;
+    background-color: var(--background-color);
   }
 
   &--active {
     border-color: var(--primary-color);
-    background-color: #eff6ff;
   }
 
   &--disabled {

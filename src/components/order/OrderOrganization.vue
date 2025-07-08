@@ -109,14 +109,3 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
     </AppInput>
   </AppCard>
 </template>
-
-<style lang="scss" scoped>
-.contact-link {
-  color: var(--primary-color);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-</style>

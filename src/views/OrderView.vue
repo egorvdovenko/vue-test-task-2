@@ -28,7 +28,7 @@ const handleSave = () => {
 
 <template>
   <div class="order-view">
-    <div class="container">
+    <div class="l-container">
       <div class="order-view__header">
         <div class="order-view__header-content">
           <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>

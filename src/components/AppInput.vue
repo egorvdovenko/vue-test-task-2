@@ -68,7 +68,3 @@ const inputId = computed(() => `input-${Math.random().toString(36).substr(2, 9)}
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-@use '@/assets/styles/components/form-group.scss';
-</style>

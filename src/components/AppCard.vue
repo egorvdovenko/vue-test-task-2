@@ -57,7 +57,7 @@ withDefaults(defineProps<Props>(), {
   &__footer {
     padding: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
-    background-color: #f8fafc;
+    background-color: var(--background-color);
   }
 }
 </style>

@@ -70,16 +70,9 @@ const inputId = computed(() => `textarea-${Math.random().toString(36).substr(2, 
 </template>
 
 <style lang="scss" scoped>
-@use '@/assets/styles/components/form-group.scss';
-
 .form-group__textarea {
   min-height: 120px;
   resize: vertical;
   font-family: inherit;
-}
-
-.form-group__value--multiline {
-  line-height: 1.6;
-  white-space: pre-wrap;
 }
 </style>
