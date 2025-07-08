@@ -78,11 +78,7 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
       @update:model-value="updateField('phone', String($event))"
     >
       <template #readonly>
-        <a
-          v-if="currentData?.organization.phone"
-          :href="`tel:${currentData.organization.phone}`"
-          class="contact-link"
-        >
+        <a v-if="currentData?.organization.phone" :href="`tel:${currentData.organization.phone}`">
           {{ currentData.organization.phone }}
         </a>
         <span v-else>-</span>
@@ -100,7 +96,6 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
         <a
           v-if="currentData?.organization.email"
           :href="`mailto:${currentData.organization.email}`"
-          class="contact-link"
         >
           {{ currentData.organization.email }}
         </a>
