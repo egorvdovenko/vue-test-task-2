@@ -35,7 +35,7 @@ const updateValue = (event: Event) => {
 const handleBlur = () => emit('blur')
 const handleFocus = () => emit('focus')
 
-const inputId = computed(() => `input-${Math.random().toString(36).substr(2, 9)}`)
+const inputId = computed(() => `input-${crypto.randomUUID()}`)
 </script>
 
 <template>
