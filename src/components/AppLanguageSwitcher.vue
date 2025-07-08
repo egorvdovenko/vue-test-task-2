@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import { computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+const availableLanguages = [
+  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+]
+
+const currentLanguage = computed(() => locale.value)
+
+const changeLanguage = (langCode: string) => {
+  locale.value = langCode
+}
+
+watch(
+  () => locale.value,
+  (newLocale: string) => {
+    localStorage.setItem('locale', newLocale)
+  },
+)
+</script>
+
 <template>
   <div class="language-switcher">
     <button
@@ -13,24 +38,6 @@
     </button>
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-const { locale } = useI18n()
-
-const availableLanguages = [
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-]
-
-const currentLanguage = computed(() => locale.value)
-
-const changeLanguage = (langCode: string) => {
-  locale.value = langCode
-}
-</script>
 
 <style lang="scss" scoped>
 .language-switcher {
