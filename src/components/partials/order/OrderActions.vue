@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useOrderStore } from '@/stores/order'
 import AppButton from '@/components/AppButton.vue'
 import AppCard from '@/components/AppCard.vue'
+import AppAlert from '@/components/AppAlert.vue'
 
 const { locale } = useI18n()
 const orderStore = useOrderStore()
@@ -63,9 +64,9 @@ const formatDate = (date: Date | undefined): string => {
           }}</span>
         </div>
       </div>
-      <div v-if="orderStore.hasUnsavedChanges" class="alert alert--warning">
-        <span>{{ $t('orderForm.actions.unsavedChanges') }}</span>
-      </div>
+      <AppAlert v-if="orderStore.hasUnsavedChanges" variant="warning">
+        {{ $t('orderForm.actions.unsavedChanges') }}
+      </AppAlert>
     </div>
   </AppCard>
 </template>

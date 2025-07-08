@@ -1,3 +1,59 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+
+export interface AppAlertProps {
+  variant?: 'warning' | 'error' | 'success' | 'info'
+  size?: 'small' | 'medium' | 'large'
+  position?: 'default' | 'inline' | 'top'
+  showIcon?: boolean
+}
+
+const props = withDefaults(defineProps<AppAlertProps>(), {
+  variant: 'info',
+  size: 'medium',
+  position: 'default',
+  showIcon: false,
+})
+
+const alertClasses = computed(() => {
+  const classes = ['alert', `alert--${props.variant}`]
+
+  if (props.size !== 'medium') {
+    classes.push(`alert--${props.size}`)
+  }
+
+  if (props.position !== 'default') {
+    classes.push(`alert--${props.position}`)
+  }
+
+  return classes
+})
+
+const iconName = computed(() => {
+  switch (props.variant) {
+    case 'warning':
+      return '⚠️'
+    case 'error':
+      return '❌'
+    case 'success':
+      return '✅'
+    case 'info':
+    default:
+      return 'ℹ️'
+  }
+})
+</script>
+
+<template>
+  <div :class="alertClasses">
+    <span v-if="showIcon" class="alert__icon" role="img" :aria-label="variant">
+      {{ iconName }}
+    </span>
+    <slot />
+  </div>
+</template>
+
+<style lang="scss" scoped>
 .alert {
   display: flex;
   align-items: center;
@@ -69,3 +125,4 @@
     margin-bottom: var(--spacing-lg);
   }
 }
+</style>
