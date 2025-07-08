@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 import { useOrderStore } from '@/stores/order'
 import AppButton from '@/components/AppButton.vue'
-import OrderPhoto from '@/components/order/OrderPhoto.vue'
-import OrderFiles from '@/components/order/OrderFiles.vue'
-import OrderDetails from '@/components/order/OrderDetails.vue'
-import OrderManufacturer from '@/components/order/OrderManufacturer.vue'
-import OrderOrganization from '@/components/order/OrderOrganization.vue'
-import OrderStatus from '@/components/order/OrderStatus.vue'
-import OrderActions from '@/components/order/OrderActions.vue'
+import OrderPhoto from '@/components/partials/order/OrderPhoto.vue'
+import OrderFiles from '@/components/partials/order/OrderFiles.vue'
+import OrderDetails from '@/components/partials/order/OrderDetails.vue'
+import OrderManufacturer from '@/components/partials/order/OrderManufacturer.vue'
+import OrderOrganization from '@/components/partials/order/OrderOrganization.vue'
+import OrderStatus from '@/components/partials/order/OrderStatus.vue'
+import OrderActions from '@/components/partials/order/OrderActions.vue'
 
 const orderStore = useOrderStore()
 
