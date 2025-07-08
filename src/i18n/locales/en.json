@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "OrderFlow"
+  },
+  "common": {
+    "remove": "Remove"
+  },
+  "home": {
+    "title": "Welcome to OrderFlow",
+    "description": "Manage your orders efficiently with our comprehensive order management system.",
+    "goToOrder": "View Orders"
+  },
+  "navigation": {
+    "home": "Home",
+    "orders": "Orders"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved."
+  },
+  "orderForm": {
+    "title": "Order Details",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "orderTitle": "Order Title",
+    "description": "Description",
+    "status": {
+      "title": "Order Status",
+      "changeStatus": "Change Status",
+      "draft": "Draft",
+      "published": "Published",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "manufacturer": {
+      "title": "Manufacturer Information",
+      "name": "Name",
+      "contact": "Contact",
+      "rating": "Rating"
+    },
+    "organization": {
+      "title": "Organization Information",
+      "name": "Company Name",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "files": {
+      "title": "Attached Files",
+      "dropZone": "Drop files here or click to upload",
+      "noFiles": "No files attached"
+    },
+    "photo": {
+      "title": "Order Photo",
+      "dropZone": "Drop photo here or click to upload",
+      "noPhoto": "No photo uploaded"
+    },
+    "actions": {
+      "title": "Actions",
+      "goToChat": "Go to Chat",
+      "contactSupport": "Contact Support",
+      "createdAt": "Created",
+      "updatedAt": "Updated",
+      "unsavedChanges": "You have unsaved changes"
+    },
+    "validation": {
+      "titleRequired": "Order title is required",
+      "descriptionRequired": "Description is required"
+    }
+  }
+}
