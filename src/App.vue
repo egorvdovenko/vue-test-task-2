@@ -138,7 +138,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     p {
       margin: 0;
       font-size: 0.875rem;
-      color: #9ca3af;
+      color: var(--text-muted);
     }
   }
 }

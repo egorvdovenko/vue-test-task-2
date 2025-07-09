@@ -4,17 +4,36 @@
   --secondary-color: #64748b;
 
   --success-color: #10b981;
+  --success-hover: #059669;
+  --success-bg: #f0fdf4;
+  --success-text: #166534;
   --warning-color: #f59e0b;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
   --error-color: #ef4444;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
   --info-color: #06b6d4;
+  --info-bg: #eff6ff;
+  --info-text: #1e40af;
 
   --background-color: #f8fafc;
   --surface-color: #ffffff;
   --border-color: #e2e8f0;
 
+  --color-white: #ffffff;
+  --color-black: #000000;
+
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
+
+  --star-color: #fbbf24;
+  --star-hover: #f59e0b;
+
+  --overlay-dark: rgba(0, 0, 0, 0.8);
+  --overlay-light: rgba(0, 0, 0, 0.7);
+  --overlay-error: rgba(239, 68, 68, 0.9);
 
   --border-radius: 8px;
   --border-radius-lg: 12px;

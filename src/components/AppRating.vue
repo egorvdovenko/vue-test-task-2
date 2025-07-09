@@ -84,14 +84,14 @@ const handleStarClick = (rating: number) => {
     transition: color 0.2s ease;
 
     &--filled {
-      color: #fbbf24;
+      color: var(--star-color);
     }
 
     &--interactive {
       cursor: pointer;
 
       &:hover {
-        color: #f59e0b;
+        color: var(--star-hover);
       }
     }
   }
@@ -104,7 +104,7 @@ const handleStarClick = (rating: number) => {
     }
 
     &.rating__star--filled:hover {
-      color: #fbbf24;
+      color: var(--star-color);
     }
   }
 }

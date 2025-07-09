@@ -78,8 +78,8 @@ const handleImageClick = () => {
   &__action {
     width: 32px;
     height: 32px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
+    background: var(--overlay-light);
+    color: var(--color-white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -89,7 +89,7 @@ const handleImageClick = () => {
     font-size: 14px;
 
     &:hover {
-      background: rgba(239, 68, 68, 0.9);
+      background: var(--overlay-error);
     }
   }
 
@@ -99,7 +99,7 @@ const handleImageClick = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--overlay-dark);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -84,7 +84,7 @@ const getConnectorStyle = (index: number) => {
 
       .progress__circle {
         background-color: var(--primary-color);
-        color: white;
+        color: var(--color-white);
         border: 2px solid var(--primary-color);
       }
     }
@@ -94,7 +94,7 @@ const getConnectorStyle = (index: number) => {
 
       .progress__circle {
         background-color: var(--success-color);
-        color: white;
+        color: var(--color-white);
         border: 2px solid var(--success-color);
       }
     }

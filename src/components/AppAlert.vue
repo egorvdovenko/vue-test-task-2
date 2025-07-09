@@ -70,27 +70,27 @@ const iconName = computed(() => {
   }
 
   &--warning {
-    background-color: #fef3c7;
+    background-color: var(--warning-bg);
     border: 1px solid var(--warning-color);
-    color: #92400e;
+    color: var(--warning-text);
   }
 
   &--error {
-    background-color: #fef2f2;
+    background-color: var(--error-bg);
     border: 1px solid var(--error-color);
-    color: #991b1b;
+    color: var(--error-text);
   }
 
   &--success {
-    background-color: #f0fdf4;
+    background-color: var(--success-bg);
     border: 1px solid var(--success-color);
-    color: #166534;
+    color: var(--success-text);
   }
 
   &--info {
-    background-color: #eff6ff;
+    background-color: var(--info-bg);
     border: 1px solid var(--info-color);
-    color: #1e40af;
+    color: var(--info-text);
   }
 
   &--small {

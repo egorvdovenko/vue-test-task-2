@@ -60,7 +60,7 @@ watch(
 
     &--active {
       background: var(--primary-color);
-      color: white;
+      color: var(--color-white);
       border-color: var(--primary-color);
     }
   }

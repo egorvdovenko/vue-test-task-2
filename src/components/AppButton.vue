@@ -111,7 +111,7 @@ const classes = computed(() => [
 
   &--primary {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--color-white);
 
     &:hover:not(:disabled):not(.button--loading) {
       background-color: var(--primary-hover);
@@ -130,10 +130,10 @@ const classes = computed(() => [
 
   &--success {
     background-color: var(--success-color);
-    color: white;
+    color: var(--color-white);
 
     &:hover:not(:disabled):not(.button--loading) {
-      background-color: #059669;
+      background-color: var(--success-hover);
     }
   }
 
