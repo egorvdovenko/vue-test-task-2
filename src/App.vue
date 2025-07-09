@@ -101,7 +101,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
   text-decoration: none;
   font-weight: 500;
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius);
   transition: all 0.2s ease;
 
   &:hover {
