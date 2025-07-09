@@ -1,0 +1,36 @@
+{
+  "id": "1",
+  "title": "Изготовление металлических деталей",
+  "description": "Требуется изготовить металлические детали согласно техническому заданию.\n\nОсновные требования:\n• Материал: сталь 45\n• Количество: 100 штук\n• Срок изготовления: 2 недели\n• Дополнительная обработка: оцинковка\n\nВсе детали должны соответствовать ГОСТ стандартам.",
+  "photo": "https://placehold.co/350x300",
+  "attachedFiles": [
+    {
+      "id": "1",
+      "name": "technical-specifications.pdf",
+      "type": "application/pdf",
+      "size": 2048576,
+      "url": "/files/technical-specifications.pdf"
+    },
+    {
+      "id": "2",
+      "name": "blueprint.dwg",
+      "type": "application/acad",
+      "size": 1024768,
+      "url": "/files/blueprint.dwg"
+    }
+  ],
+  "manufacturer": {
+    "name": "ООО \"МеталлПром\"",
+    "contact": "+7 (495) 123-45-67",
+    "rating": 4.8
+  },
+  "organization": {
+    "name": "ООО \"ТехноСтрой\"",
+    "address": "г. Москва, ул. Промышленная, д. 15",
+    "phone": "+7 (495) 987-65-43",
+    "email": "orders@technostroy.ru"
+  },
+  "status": "published",
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2025-01-05T00:00:00.000Z"
+}

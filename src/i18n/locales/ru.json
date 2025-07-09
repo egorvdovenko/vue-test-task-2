@@ -5,7 +5,9 @@
   "common": {
     "remove": "Удалить",
     "notAvailable": "Недоступно",
-    "noData": "-"
+    "noData": "-",
+    "loading": "Загрузка...",
+    "loadingData": "Загрузка данных..."
   },
   "home": {
     "title": "Добро пожаловать в OrderFlow",

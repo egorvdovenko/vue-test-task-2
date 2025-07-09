@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useOrderStore } from '@/stores/order'
 import AppButton from '@/components/AppButton.vue'
+import AppLoader from '@/components/AppLoader.vue'
 import OrderPhoto from '@/partials/order/OrderPhoto.vue'
 import OrderFiles from '@/partials/order/OrderFiles.vue'
 import OrderDetails from '@/partials/order/OrderDetails.vue'
@@ -24,6 +25,10 @@ const handleSave = () => {
     orderStore.saveChanges()
   }
 }
+
+onMounted(() => {
+  orderStore.loadOrder()
+})
 </script>
 
 <template>
@@ -34,13 +39,13 @@ const handleSave = () => {
           <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>
           <div class="order-view__actions">
             <AppButton
-              v-if="!orderStore.isEditMode"
+              v-if="!orderStore.isEditMode && !orderStore.isLoadingOrder"
               @click="orderStore.startEdit"
               variant="primary"
             >
               {{ $t('orderForm.edit') }}
             </AppButton>
-            <template v-else>
+            <template v-else-if="orderStore.isEditMode">
               <AppButton @click="handleSave" :disabled="!isFormValid" variant="success">
                 {{ $t('orderForm.save') }}
               </AppButton>
@@ -53,15 +58,29 @@ const handleSave = () => {
       </div>
       <div class="order-view__content">
         <div class="order-view__left">
-          <OrderPhoto />
-          <OrderFiles />
+          <AppLoader
+            v-if="orderStore.isLoadingOrder"
+            :message="$t('common.loadingData')"
+            size="lg"
+          />
+          <template v-else>
+            <OrderPhoto />
+            <OrderFiles />
+          </template>
         </div>
         <div class="order-view__right">
-          <OrderDetails />
-          <OrderManufacturer />
-          <OrderOrganization />
-          <OrderStatus />
-          <OrderActions />
+          <AppLoader
+            v-if="orderStore.isLoadingOrder"
+            :message="$t('common.loadingData')"
+            size="lg"
+          />
+          <template v-else>
+            <OrderDetails />
+            <OrderManufacturer />
+            <OrderOrganization />
+            <OrderStatus />
+            <OrderActions />
+          </template>
         </div>
       </div>
     </div>
@@ -110,6 +129,7 @@ const handleSave = () => {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
+    min-height: 400px;
   }
 }
 </style>

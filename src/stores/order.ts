@@ -1,59 +1,47 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { OrderStatus, type OrderData, type OrderFormData, type AttachedFile } from '@/types/order'
+import orderData from '@/data/order.json'
 
 export const useOrderStore = defineStore('order', () => {
   const isEditMode = ref(false)
   const originalOrderData = ref<OrderData | null>(null)
   const editableOrderData = ref<OrderFormData | null>(null)
+  const isLoadingOrder = ref(false)
 
-  const mockOrder: OrderData = {
-    id: '1',
-    title: 'Изготовление металлических деталей',
-    description: `Требуется изготовить металлические детали согласно техническому заданию.
-
-Основные требования:
-• Материал: сталь 45
-• Количество: 100 штук
-• Срок изготовления: 2 недели
-• Дополнительная обработка: оцинковка
-
-Все детали должны соответствовать ГОСТ стандартам.`,
-    photo: 'https://placehold.co/350x300',
-    attachedFiles: [
-      {
-        id: '1',
-        name: 'technical-specifications.pdf',
-        type: 'application/pdf',
-        size: 2048576,
-        url: '/files/technical-specifications.pdf',
-      },
-      {
-        id: '2',
-        name: 'blueprint.dwg',
-        type: 'application/acad',
-        size: 1024768,
-        url: '/files/blueprint.dwg',
-      },
-    ],
-    manufacturer: {
-      name: 'ООО "МеталлПром"',
-      contact: '+7 (495) 123-45-67',
-      rating: 4.8,
-    },
-    organization: {
-      name: 'ООО "ТехноСтрой"',
-      address: 'г. Москва, ул. Промышленная, д. 15',
-      phone: '+7 (495) 987-65-43',
-      email: 'orders@technostroy.ru',
-    },
-    status: OrderStatus.Published,
-    createdAt: new Date('2025-01-01'),
-    updatedAt: new Date('2025-01-05'),
+  async function getOrderData(): Promise<OrderData> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          ...orderData,
+          status: OrderStatus.Published,
+          createdAt: new Date(orderData.createdAt),
+          updatedAt: new Date(orderData.updatedAt),
+        })
+      }, 1000)
+    })
   }
 
-  if (!originalOrderData.value) {
-    originalOrderData.value = mockOrder
+  async function loadOrder() {
+    isLoadingOrder.value = true
+    try {
+      const stored = localStorage.getItem('orderData')
+      if (stored) {
+        const parsedData = JSON.parse(stored)
+        originalOrderData.value = {
+          ...parsedData,
+          createdAt: new Date(parsedData.createdAt),
+          updatedAt: new Date(parsedData.updatedAt),
+        }
+      } else {
+        originalOrderData.value = await getOrderData()
+      }
+    } catch (error) {
+      console.error('Failed to load order data:', error)
+      originalOrderData.value = await getOrderData()
+    } finally {
+      isLoadingOrder.value = false
+    }
   }
 
   const currentOrderData = computed(() => {
@@ -167,30 +155,13 @@ export const useOrderStore = defineStore('order', () => {
     }
   }
 
-  const loadFromStorage = () => {
-    const stored = localStorage.getItem('orderData')
-    if (stored) {
-      try {
-        const parsedData = JSON.parse(stored)
-        originalOrderData.value = {
-          ...parsedData,
-          createdAt: new Date(parsedData.createdAt),
-          updatedAt: new Date(parsedData.updatedAt),
-        }
-      } catch (error) {
-        console.error('Failed to load order data from localStorage:', error)
-      }
-    }
-  }
-
-  loadFromStorage()
-
   return {
     isEditMode,
     originalOrderData,
     editableOrderData,
     currentOrderData,
     hasUnsavedChanges,
+    isLoadingOrder,
     startEdit,
     cancelEdit,
     saveChanges,
@@ -201,6 +172,6 @@ export const useOrderStore = defineStore('order', () => {
     removeFile,
     updatePhoto,
     updateStatus,
-    loadFromStorage,
+    loadOrder,
   }
 })
