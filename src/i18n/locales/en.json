@@ -3,7 +3,9 @@
     "title": "OrderFlow"
   },
   "common": {
-    "remove": "Remove"
+    "remove": "Remove",
+    "notAvailable": "Not available",
+    "noData": "-"
   },
   "home": {
     "title": "Welcome to OrderFlow",
@@ -61,7 +63,9 @@
       "contactSupport": "Contact Support",
       "createdAt": "Created",
       "updatedAt": "Updated",
-      "unsavedChanges": "You have unsaved changes"
+      "unsavedChanges": "You have unsaved changes",
+      "goToChatAlert": "Redirecting to chat...",
+      "contactSupportAlert": "Opening support contact..."
     },
     "validation": {
       "titleRequired": "Order title is required",

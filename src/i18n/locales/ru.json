@@ -3,7 +3,9 @@
     "title": "OrderFlow"
   },
   "common": {
-    "remove": "Удалить"
+    "remove": "Удалить",
+    "notAvailable": "Недоступно",
+    "noData": "-"
   },
   "home": {
     "title": "Добро пожаловать в OrderFlow",
@@ -61,7 +63,9 @@
       "contactSupport": "Связаться с поддержкой",
       "createdAt": "Создан",
       "updatedAt": "Обновлён",
-      "unsavedChanges": "У вас есть несохранённые изменения"
+      "unsavedChanges": "У вас есть несохранённые изменения",
+      "goToChatAlert": "Переход в чат...",
+      "contactSupportAlert": "Открытие связи с поддержкой..."
     },
     "validation": {
       "titleRequired": "Название заказа обязательно",

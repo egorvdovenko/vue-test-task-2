@@ -5,19 +5,19 @@ import AppButton from '@/components/AppButton.vue'
 import AppCard from '@/components/AppCard.vue'
 import AppAlert from '@/components/AppAlert.vue'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const orderStore = useOrderStore()
 
 const goToChat = () => {
-  alert('goToChat')
+  alert(t('orderForm.actions.goToChatAlert'))
 }
 
 const contactSupport = () => {
-  alert('contactSupport')
+  alert(t('orderForm.actions.contactSupportAlert'))
 }
 
 const formatDate = (date: Date | undefined): string => {
-  if (!date) return '-'
+  if (!date) return t('common.noData')
 
   const localeCode = locale.value === 'ru' ? 'ru-RU' : 'en-US'
 
