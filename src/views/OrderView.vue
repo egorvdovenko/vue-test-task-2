@@ -33,7 +33,13 @@ onMounted(() => {
 
 <template>
   <div class="order-view">
-    <div class="l-container">
+    <AppLoader
+      v-if="orderStore.isLoadingOrder"
+      :message="$t('common.loadingData')"
+      size="lg"
+      class="order-view__loader"
+    />
+    <div v-else class="l-container">
       <div class="order-view__header">
         <div class="order-view__header-content">
           <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>
@@ -58,29 +64,15 @@ onMounted(() => {
       </div>
       <div class="order-view__content">
         <div class="order-view__left">
-          <AppLoader
-            v-if="orderStore.isLoadingOrder"
-            :message="$t('common.loadingData')"
-            size="lg"
-          />
-          <template v-else>
-            <OrderPhoto />
-            <OrderFiles />
-          </template>
+          <OrderPhoto />
+          <OrderFiles />
         </div>
         <div class="order-view__right">
-          <AppLoader
-            v-if="orderStore.isLoadingOrder"
-            :message="$t('common.loadingData')"
-            size="lg"
-          />
-          <template v-else>
-            <OrderDetails />
-            <OrderManufacturer />
-            <OrderOrganization />
-            <OrderStatus />
-            <OrderActions />
-          </template>
+          <OrderDetails />
+          <OrderManufacturer />
+          <OrderOrganization />
+          <OrderStatus />
+          <OrderActions />
         </div>
       </div>
     </div>
@@ -89,8 +81,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .order-view {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: var(--spacing-xl) 0;
+
+  &__loader {
+    flex: 1;
+  }
 
   &__header {
     margin-bottom: var(--spacing-2xl);

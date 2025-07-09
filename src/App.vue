@@ -47,6 +47,8 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 </style>
