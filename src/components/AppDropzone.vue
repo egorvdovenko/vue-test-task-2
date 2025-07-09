@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Props {
   accept?: string
@@ -15,11 +18,13 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   accept: '*/*',
   multiple: false,
-  text: 'Click or drag files here to upload',
+  text: '',
   disabled: false,
 })
 
 const emit = defineEmits<Emits>()
+
+const displayText = computed(() => props.text || t('common.dropZone'))
 
 const fileInput = ref<HTMLInputElement>()
 const isDragOver = ref(false)
@@ -92,7 +97,7 @@ const handleDragOver = (event: DragEvent) => {
         </svg>
       </slot>
       <slot name="text">
-        <p class="drop-zone__text">{{ text }}</p>
+        <p class="drop-zone__text">{{ displayText }}</p>
       </slot>
     </div>
     <input

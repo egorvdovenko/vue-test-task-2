@@ -1,6 +1,9 @@
 import { computed, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export function useTextFormatting() {
+  const { t } = useI18n()
+
   const formatDescription = (text: string | undefined): string => {
     if (!text) return ''
 
@@ -16,7 +19,7 @@ export function useTextFormatting() {
 
   const truncateText = (text: string, maxLength: number): string => {
     if (!text || text.length <= maxLength) return text
-    return text.substring(0, maxLength).trim() + '...'
+    return text.substring(0, maxLength).trim() + t('common.ellipsis')
   }
 
   const toTitleCase = (text: string): string => {

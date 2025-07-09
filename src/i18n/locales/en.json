@@ -7,7 +7,10 @@
     "notAvailable": "Not available",
     "noData": "-",
     "loading": "Loading...",
-    "loadingData": "Loading data..."
+    "loadingData": "Loading data...",
+    "ellipsis": "...",
+    "dropZone": "Click or drag files here to upload",
+    "photoPreview": "Photo preview"
   },
   "home": {
     "title": "Welcome to OrderFlow",

@@ -1,19 +1,22 @@
 <template>
   <div class="previewer">
-    <img :src="src" :alt="alt" class="previewer__image" @click="handleImageClick" />
+    <img :src="src" :alt="displayAlt" class="previewer__image" @click="handleImageClick" />
     <div v-if="showRemoveButton" class="previewer__overlay">
-      <button @click="$emit('remove')" class="previewer__action" :title="removeButtonTitle">
+      <button @click="$emit('remove')" class="previewer__action" :title="displayRemoveTitle">
         ✕
       </button>
     </div>
     <div v-if="showZoom && enableZoom" class="previewer__zoom-overlay" @click="showZoom = false">
-      <img :src="src" :alt="alt" class="previewer__zoom-image" />
+      <img :src="src" :alt="displayAlt" class="previewer__zoom-image" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Props {
   src: string
@@ -28,13 +31,16 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  alt: 'Photo preview',
+  alt: '',
   showRemoveButton: false,
   enableZoom: true,
-  removeButtonTitle: 'Remove',
+  removeButtonTitle: '',
 })
 
 defineEmits<Emits>()
+
+const displayAlt = computed(() => props.alt || t('common.photoPreview'))
+const displayRemoveTitle = computed(() => props.removeButtonTitle || t('common.remove'))
 
 const showZoom = ref(false)
 

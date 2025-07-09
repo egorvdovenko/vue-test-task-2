@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Props {
   modelValue: string | number
@@ -46,7 +49,7 @@ const inputId = computed(() => `textarea-${Math.random().toString(36).substr(2, 
     </label>
     <div v-if="readonly" class="form-group__value form-group__value--multiline">
       <slot name="readonly" :value="modelValue">
-        {{ modelValue || '-' }}
+        {{ modelValue || t('common.noData') }}
       </slot>
     </div>
     <textarea
