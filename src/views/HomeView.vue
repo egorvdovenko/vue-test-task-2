@@ -12,9 +12,9 @@ const goToOrder = () => {
 <template>
   <div class="home-view">
     <div class="l-container">
-      <div class="home-content">
-        <h1 class="home-title">{{ $t('home.title') }}</h1>
-        <p class="home-description">{{ $t('home.description') }}</p>
+      <div class="home-view__content">
+        <h1 class="home-view__title">{{ $t('home.title') }}</h1>
+        <p class="home-view__description">{{ $t('home.description') }}</p>
         <AppButton variant="primary" size="lg" @click="goToOrder">
           {{ $t('home.goToOrder') }}
         </AppButton>
@@ -30,24 +30,24 @@ const goToOrder = () => {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-xl) 0;
-}
 
-.home-content {
-  text-align: center;
-  max-width: 600px;
-}
+  &__content {
+    text-align: center;
+    max-width: 600px;
+  }
 
-.home-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-lg);
-}
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+  }
 
-.home-description {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-xl);
-  line-height: 1.6;
+  &__description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
 }
 </style>
