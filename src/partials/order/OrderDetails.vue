@@ -1,69 +1,48 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { useOrderStore } from '@/stores/order'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useOrderStore } from '@/stores/order'
 import AppCard from '@/components/AppCard.vue'
 import AppInput from '@/components/AppInput.vue'
 import AppTextarea from '@/components/AppTextarea.vue'
+import { useLocalFormFields } from '@/composables/useLocalState'
+import { useFieldValidation } from '@/composables/useFieldValidation'
+import { useTextFormatting } from '@/composables/useTextFormatting'
 
 const orderStore = useOrderStore()
 const { t } = useI18n()
 
-const localTitle = ref('')
-const localDescription = ref('')
-
 const currentData = computed(() => orderStore.currentOrderData)
 
-watch(
+const localFields = useLocalFormFields(
   currentData,
-  (newData) => {
-    if (newData) {
-      localTitle.value = newData.title
-      localDescription.value = newData.description
-    }
-  },
-  { immediate: true },
+  computed(() => orderStore.isEditMode),
+  ['title', 'description'],
 )
 
-watch(
-  () => orderStore.isEditMode,
-  (isEdit) => {
-    if (isEdit && currentData.value) {
-      localTitle.value = currentData.value.title
-      localDescription.value = currentData.value.description
-    }
-  },
+const titleValidation = useFieldValidation(
+  computed(() => localFields.value.title),
+  { required: true },
+  computed(() => orderStore.isEditMode),
+  { required: t('orderForm.validation.titleRequired') },
 )
 
-const titleError = computed(() => {
-  if (orderStore.isEditMode && !localTitle.value?.trim()) {
-    return t('orderForm.validation.titleRequired')
-  }
-  return ''
-})
+const descriptionValidation = useFieldValidation(
+  computed(() => localFields.value.description),
+  { required: true },
+  computed(() => orderStore.isEditMode),
+  { required: t('orderForm.validation.descriptionRequired') },
+)
 
-const descriptionError = computed(() => {
-  if (orderStore.isEditMode && !localDescription.value?.trim()) {
-    return t('orderForm.validation.descriptionRequired')
-  }
-  return ''
-})
-
-const formattedDescription = computed(() => {
-  if (!currentData.value?.description) return ''
-
-  return currentData.value.description
-    .replace(/\n/g, '<br>')
-    .replace(/^• (.+)$/gm, '<ul><li>$1</li></ul>')
-    .replace(/<\/ul>\s*<ul>/g, '')
-})
+const { useFormattedDescription } = useTextFormatting()
+const formattedDescription = useFormattedDescription(computed(() => currentData.value?.description))
 
 const updateTitle = () => {
-  orderStore.updateField('title', localTitle.value)
+  orderStore.updateField('title', localFields.value.title)
 }
 
 const updateDescription = () => {
-  orderStore.updateField('description', localDescription.value)
+  orderStore.updateField('description', localFields.value.description)
 }
 </script>
 
@@ -74,18 +53,18 @@ const updateDescription = () => {
     </template>
     <div v-if="orderStore.isEditMode">
       <AppInput
-        v-model="localTitle"
+        v-model="localFields.title"
         :label="$t('orderForm.orderTitle')"
         :placeholder="$t('orderForm.orderTitle')"
-        :error="titleError"
+        :error="titleValidation.error.value"
         required
         @update:modelValue="updateTitle"
       />
       <AppTextarea
-        v-model="localDescription"
+        v-model="localFields.description"
         :label="$t('orderForm.description')"
         :placeholder="$t('orderForm.description')"
-        :error="descriptionError"
+        :error="descriptionValidation.error.value"
         :rows="6"
         required
         @update:modelValue="updateDescription"
@@ -95,7 +74,7 @@ const updateDescription = () => {
       <div class="form-group">
         <label class="form-group__label">{{ $t('orderForm.orderTitle') }}</label>
         <div class="form-group__value">
-          {{ currentData?.title || '-' }}
+          {{ currentData?.title || t('common.noData') }}
         </div>
       </div>
       <div class="form-group">

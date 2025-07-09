@@ -65,7 +65,13 @@
     },
     "validation": {
       "titleRequired": "Order title is required",
-      "descriptionRequired": "Description is required"
+      "descriptionRequired": "Description is required",
+      "fieldRequired": "This field is required",
+      "manufacturerNameRequired": "Manufacturer name is required",
+      "organizationNameRequired": "Organization name is required",
+      "minLength": "Minimum {count} characters required",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPhone": "Please enter a valid phone number"
     }
   }
 }

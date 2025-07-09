@@ -1,39 +1,30 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useOrderStore } from '@/stores/order'
 import type { Organization } from '@/types/order'
 import AppCard from '@/components/AppCard.vue'
 import AppInput from '@/components/AppInput.vue'
 import AppTextarea from '@/components/AppTextarea.vue'
+import { useLocalState } from '@/composables/useLocalState'
+import { useFieldValidation } from '@/composables/useFieldValidation'
 
 const orderStore = useOrderStore()
-
-const localData = ref<Organization>({
-  name: '',
-  address: '',
-  phone: '',
-  email: '',
-})
+const { t } = useI18n()
 
 const currentData = computed(() => orderStore.currentOrderData)
 
-watch(
-  currentData,
-  (newData) => {
-    if (newData) {
-      localData.value = { ...newData.organization }
-    }
-  },
-  { immediate: true },
+const localData = useLocalState(
+  computed(() => currentData.value?.organization),
+  computed(() => orderStore.isEditMode),
+  { name: '', address: '', phone: '', email: '' } as Organization,
 )
 
-watch(
-  () => orderStore.isEditMode,
-  (isEdit) => {
-    if (isEdit && currentData.value) {
-      localData.value = { ...currentData.value.organization }
-    }
-  },
+const nameValidation = useFieldValidation(
+  computed(() => localData.value.name),
+  { required: true },
+  computed(() => orderStore.isEditMode),
+  { required: t('orderForm.validation.organizationNameRequired') },
 )
 
 const updateField = <K extends keyof Organization>(field: K, value: Organization[K]) => {
@@ -51,10 +42,12 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
       :label="$t('orderForm.organization.name')"
       :placeholder="$t('orderForm.organization.name')"
       :readonly="!orderStore.isEditMode"
+      :error="nameValidation.error.value"
+      required
       @update:model-value="updateField('name', String($event))"
     >
       <template #readonly>
-        {{ currentData?.organization.name || '-' }}
+        {{ currentData?.organization.name || t('common.noData') }}
       </template>
     </AppInput>
     <AppTextarea
@@ -66,7 +59,7 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
       @update:model-value="updateField('address', String($event))"
     >
       <template #readonly>
-        {{ currentData?.organization.address || '-' }}
+        {{ currentData?.organization.address || t('common.noData') }}
       </template>
     </AppTextarea>
     <AppInput
@@ -81,7 +74,7 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
         <a v-if="currentData?.organization.phone" :href="`tel:${currentData.organization.phone}`">
           {{ currentData.organization.phone }}
         </a>
-        <span v-else>-</span>
+        <span v-else>{{ t('common.noData') }}</span>
       </template>
     </AppInput>
     <AppInput
@@ -99,7 +92,7 @@ const updateField = <K extends keyof Organization>(field: K, value: Organization
         >
           {{ currentData.organization.email }}
         </a>
-        <span v-else>-</span>
+        <span v-else>{{ t('common.noData') }}</span>
       </template>
     </AppInput>
   </AppCard>

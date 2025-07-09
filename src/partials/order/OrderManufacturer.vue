@@ -1,38 +1,30 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useOrderStore } from '@/stores/order'
 import AppCard from '@/components/AppCard.vue'
 import AppInput from '@/components/AppInput.vue'
 import AppRating from '@/components/AppRating.vue'
 import type { Manufacturer } from '@/types/order'
+import { useLocalState } from '@/composables/useLocalState'
+import { useFieldValidation } from '@/composables/useFieldValidation'
 
 const orderStore = useOrderStore()
-
-const localData = ref<Manufacturer>({
-  name: '',
-  contact: '',
-  rating: 0,
-})
+const { t } = useI18n()
 
 const currentData = computed(() => orderStore.currentOrderData)
 
-watch(
-  currentData,
-  (newData) => {
-    if (newData) {
-      localData.value = { ...newData.manufacturer }
-    }
-  },
-  { immediate: true },
+const localData = useLocalState(
+  computed(() => currentData.value?.manufacturer),
+  computed(() => orderStore.isEditMode),
+  { name: '', contact: '', rating: 0 } as Manufacturer,
 )
 
-watch(
-  () => orderStore.isEditMode,
-  (isEdit) => {
-    if (isEdit && currentData.value) {
-      localData.value = { ...currentData.value.manufacturer }
-    }
-  },
+const nameValidation = useFieldValidation(
+  computed(() => localData.value.name),
+  { required: true },
+  computed(() => orderStore.isEditMode),
+  { required: t('orderForm.validation.manufacturerNameRequired') },
 )
 
 const updateField = <K extends keyof Manufacturer>(field: K, value: Manufacturer[K]) => {
@@ -50,10 +42,12 @@ const updateField = <K extends keyof Manufacturer>(field: K, value: Manufacturer
       :label="$t('orderForm.manufacturer.name')"
       :placeholder="$t('orderForm.manufacturer.name')"
       :readonly="!orderStore.isEditMode"
+      :error="nameValidation.error.value"
+      required
       @update:model-value="updateField('name', String($event))"
     >
       <template #readonly>
-        {{ currentData?.manufacturer.name || '-' }}
+        {{ currentData?.manufacturer.name || t('common.noData') }}
       </template>
     </AppInput>
     <AppInput
@@ -64,7 +58,7 @@ const updateField = <K extends keyof Manufacturer>(field: K, value: Manufacturer
       @update:model-value="updateField('contact', String($event))"
     >
       <template #readonly>
-        {{ currentData?.manufacturer.contact || '-' }}
+        {{ currentData?.manufacturer.contact || t('common.noData') }}
       </template>
     </AppInput>
     <AppInput

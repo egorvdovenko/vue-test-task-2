@@ -65,7 +65,13 @@
     },
     "validation": {
       "titleRequired": "Название заказа обязательно",
-      "descriptionRequired": "Описание обязательно"
+      "descriptionRequired": "Описание обязательно",
+      "fieldRequired": "Это поле обязательно",
+      "manufacturerNameRequired": "Название производителя обязательно",
+      "organizationNameRequired": "Название организации обязательно",
+      "minLength": "Минимум {count} символов",
+      "invalidEmail": "Введите корректный адрес электронной почты",
+      "invalidPhone": "Введите корректный номер телефона"
     }
   }
 }
