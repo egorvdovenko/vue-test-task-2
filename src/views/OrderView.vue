@@ -41,25 +41,23 @@ onMounted(() => {
     />
     <div v-else class="l-container">
       <div class="order-view__header">
-        <div class="order-view__header-content">
-          <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>
-          <div class="order-view__actions">
-            <AppButton
-              v-if="!orderStore.isEditMode && !orderStore.isLoadingOrder"
-              @click="orderStore.startEdit"
-              variant="primary"
-            >
-              {{ $t('orderForm.edit') }}
+        <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>
+        <div class="order-view__actions">
+          <AppButton
+            v-if="!orderStore.isEditMode && !orderStore.isLoadingOrder"
+            @click="orderStore.startEdit"
+            variant="primary"
+          >
+            {{ $t('orderForm.edit') }}
+          </AppButton>
+          <template v-else-if="orderStore.isEditMode">
+            <AppButton @click="handleSave" :disabled="!isFormValid" variant="success">
+              {{ $t('orderForm.save') }}
             </AppButton>
-            <template v-else-if="orderStore.isEditMode">
-              <AppButton @click="handleSave" :disabled="!isFormValid" variant="success">
-                {{ $t('orderForm.save') }}
-              </AppButton>
-              <AppButton @click="orderStore.cancelEdit" variant="secondary">
-                {{ $t('orderForm.cancel') }}
-              </AppButton>
-            </template>
-          </div>
+            <AppButton @click="orderStore.cancelEdit" variant="secondary">
+              {{ $t('orderForm.cancel') }}
+            </AppButton>
+          </template>
         </div>
       </div>
       <div class="order-view__content">
@@ -91,13 +89,10 @@ onMounted(() => {
   }
 
   &__header {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  &__header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: var(--spacing-2xl);
   }
 
   &__title {
@@ -117,7 +112,7 @@ onMounted(() => {
     grid-template-columns: 400px 1fr;
     gap: var(--spacing-2xl);
 
-    @media (max-width: var(--breakpoint-tablet)) {
+    @media (max-width: 1024px) {
       grid-template-columns: 1fr;
     }
   }

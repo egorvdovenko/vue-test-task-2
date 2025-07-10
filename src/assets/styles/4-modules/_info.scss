@@ -32,7 +32,7 @@
     align-items: flex-start;
     gap: var(--spacing-xs);
 
-    @media (min-width: var(--breakpoint-mobile)) {
+    @media (min-width: 768px) {
       flex-direction: row;
       align-items: center;
       gap: 0;

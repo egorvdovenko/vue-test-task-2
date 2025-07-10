@@ -101,7 +101,6 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
   text-decoration: none;
   font-weight: 500;
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
   transition: all 0.2s ease;
 
   &:hover {
@@ -127,7 +126,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     justify-content: center;
     padding: var(--spacing-md) 0;
 
-    @media (max-width: var(--breakpoint-mobile)) {
+    @media (max-width: 768px) {
       flex-direction: column;
       gap: var(--spacing-md);
       text-align: center;

@@ -137,7 +137,7 @@ const getConnectorStyle = (index: number) => {
   }
 }
 
-@media (max-width: var(--breakpoint-mobile)) {
+@media (max-width: 768px) {
   .progress {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
