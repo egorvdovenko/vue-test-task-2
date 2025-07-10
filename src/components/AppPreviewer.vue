@@ -1,17 +1,3 @@
-<template>
-  <div class="previewer">
-    <img :src="src" :alt="displayAlt" class="previewer__image" @click="handleImageClick" />
-    <div v-if="showRemoveButton" class="previewer__overlay">
-      <button @click="$emit('remove')" class="previewer__action" :title="displayRemoveTitle">
-        ✕
-      </button>
-    </div>
-    <div v-if="showZoom && enableZoom" class="previewer__zoom-overlay" @click="showZoom = false">
-      <img :src="src" :alt="displayAlt" class="previewer__zoom-image" />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -50,6 +36,20 @@ const handleImageClick = () => {
   }
 }
 </script>
+
+<template>
+  <div class="previewer">
+    <img :src="src" :alt="displayAlt" class="previewer__image" @click="handleImageClick" />
+    <div v-if="showRemoveButton" class="previewer__overlay">
+      <button @click="$emit('remove')" class="previewer__action" :title="displayRemoveTitle">
+        ✕
+      </button>
+    </div>
+    <div v-if="showZoom && enableZoom" class="previewer__zoom-overlay" @click="showZoom = false">
+      <img :src="src" :alt="displayAlt" class="previewer__zoom-image" />
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .previewer {

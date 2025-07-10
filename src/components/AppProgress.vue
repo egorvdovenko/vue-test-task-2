@@ -1,32 +1,3 @@
-<template>
-  <div class="progress" :style="{ '--steps-count': steps.length }">
-    <div
-      v-for="(step, index) in steps"
-      :key="step.key"
-      class="progress__step"
-      :class="{
-        'progress__step--active': step.key === currentStatus,
-        'progress__step--completed': isStepCompleted(step.key),
-      }"
-    >
-      <div class="progress__circle">
-        <span v-if="isStepCompleted(step.key)">✓</span>
-        <span v-else>{{ index + 1 }}</span>
-      </div>
-      <div class="progress__label">{{ step.label }}</div>
-    </div>
-    <div
-      v-for="(step, index) in steps.slice(0, -1)"
-      :key="`connector-${index}`"
-      class="progress__connector"
-      :class="{
-        'progress__connector--completed': isStepCompleted(steps[index + 1].key),
-      }"
-      :style="getConnectorStyle(index)"
-    ></div>
-  </div>
-</template>
-
 <script setup lang="ts">
 interface Step {
   key: string
@@ -62,6 +33,35 @@ const getConnectorStyle = (index: number) => {
   }
 }
 </script>
+
+<template>
+  <div class="progress" :style="{ '--steps-count': steps.length }">
+    <div
+      v-for="(step, index) in steps"
+      :key="step.key"
+      class="progress__step"
+      :class="{
+        'progress__step--active': step.key === currentStatus,
+        'progress__step--completed': isStepCompleted(step.key),
+      }"
+    >
+      <div class="progress__circle">
+        <span v-if="isStepCompleted(step.key)">✓</span>
+        <span v-else>{{ index + 1 }}</span>
+      </div>
+      <div class="progress__label">{{ step.label }}</div>
+    </div>
+    <div
+      v-for="(step, index) in steps.slice(0, -1)"
+      :key="`connector-${index}`"
+      class="progress__connector"
+      :class="{
+        'progress__connector--completed': isStepCompleted(steps[index + 1].key),
+      }"
+      :style="getConnectorStyle(index)"
+    ></div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .progress {
