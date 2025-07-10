@@ -11,7 +11,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  statusOrder: () => ['draft', 'published', 'inProgress', 'completed'],
+  statusOrder: () => [],
 })
 
 const isStepCompleted = (stepStatus: string): boolean => {
