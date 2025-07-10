@@ -7,9 +7,14 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     <header class="app-header">
       <div class="l-container">
         <div class="app-header__content">
-          <router-link to="/" class="app-header__logo">
-            {{ $t('app.title') }}
-          </router-link>
+          <div class="app-header__top">
+            <router-link to="/" class="app-header__logo">
+              {{ $t('app.title') }}
+            </router-link>
+            <div class="app-header__actions">
+              <AppLanguageSwitcher />
+            </div>
+          </div>
           <nav class="app-header__nav">
             <router-link to="/" class="nav-link">
               {{ $t('navigation.home') }}
@@ -18,9 +23,6 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
               {{ $t('navigation.orders') }}
             </router-link>
           </nav>
-          <div class="app-header__actions">
-            <AppLanguageSwitcher />
-          </div>
         </div>
       </div>
     </header>
@@ -68,6 +70,23 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     justify-content: space-between;
     padding: var(--spacing-md) 0;
     gap: var(--spacing-lg);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) 0;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @media (min-width: 769px) {
+      width: auto;
+    }
   }
 
   &__logo {
@@ -80,6 +99,10 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     &:hover {
       color: var(--primary-color);
     }
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
   }
 
   &__nav {
@@ -88,6 +111,13 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     gap: var(--spacing-lg);
     flex: 1;
     justify-content: center;
+
+    @media (max-width: 768px) {
+      flex: none;
+      width: 100%;
+      justify-content: center;
+      gap: var(--spacing-md);
+    }
   }
 
   &__actions {
@@ -111,6 +141,16 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
   &.router-link-active {
     color: var(--primary-color);
     font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.875rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
   }
 }
 </style>
