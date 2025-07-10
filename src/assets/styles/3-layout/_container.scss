@@ -3,3 +3,15 @@
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
+
+.m-container {
+  max-width: var(--breakpoint-tablet);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.s-container {
+  max-width: var(--breakpoint-mobile);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
