@@ -92,12 +92,12 @@ const formatFileSize = (bytes: number): string => {
   &__item-size {
     font-size: 0.75rem;
     color: var(--text-secondary);
-    margin-top: 2px;
+    margin-top: var(--spacing-xxs);
   }
 
   &__item-remove {
-    width: 24px;
-    height: 24px;
+    width: var(--icon-lg);
+    height: var(--icon-lg);
     padding: 0;
     background: none;
     border: none;

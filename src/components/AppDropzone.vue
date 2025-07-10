@@ -147,8 +147,8 @@ const handleDragOver = (event: DragEvent) => {
   }
 
   &__icon {
-    width: 48px;
-    height: 48px;
+    width: var(--icon-3xl);
+    height: var(--icon-3xl);
     color: var(--text-secondary);
     opacity: 0.5;
   }

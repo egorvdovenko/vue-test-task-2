@@ -34,8 +34,8 @@ withDefaults(defineProps<Props>(), {
   }
 
   &__spinner {
-    width: 40px;
-    height: 40px;
+    width: var(--icon-2xl);
+    height: var(--icon-2xl);
     border: 3px solid var(--border-color);
     border-top: 3px solid var(--primary-color);
     border-radius: 50%;
@@ -43,14 +43,14 @@ withDefaults(defineProps<Props>(), {
   }
 
   &--sm &__spinner {
-    width: 24px;
-    height: 24px;
+    width: var(--icon-lg);
+    height: var(--icon-lg);
     border-width: 2px;
   }
 
   &--lg &__spinner {
-    width: 56px;
-    height: 56px;
+    width: var(--icon-4xl);
+    height: var(--icon-4xl);
     border-width: 4px;
   }
 

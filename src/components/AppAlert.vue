@@ -64,8 +64,8 @@ const iconName = computed(() => {
   margin-top: var(--spacing-lg);
 
   &__icon {
-    width: 16px;
-    height: 16px;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
     flex-shrink: 0;
   }
 
@@ -99,8 +99,8 @@ const iconName = computed(() => {
     margin-top: var(--spacing-md);
 
     .alert__icon {
-      width: 14px;
-      height: 14px;
+      width: var(--icon-xs);
+      height: var(--icon-xs);
     }
   }
 
@@ -110,8 +110,8 @@ const iconName = computed(() => {
     margin-top: var(--spacing-xl);
 
     .alert__icon {
-      width: 20px;
-      height: 20px;
+      width: var(--icon-md);
+      height: var(--icon-md);
     }
   }
 

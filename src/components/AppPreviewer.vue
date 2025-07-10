@@ -76,8 +76,8 @@ const handleImageClick = () => {
   }
 
   &__action {
-    width: 32px;
-    height: 32px;
+    width: var(--icon-xl);
+    height: var(--icon-xl);
     background: var(--overlay-light);
     color: var(--color-white);
     border: none;
@@ -86,7 +86,7 @@ const handleImageClick = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: var(--font-size-sm);
 
     &:hover {
       background: var(--overlay-error);

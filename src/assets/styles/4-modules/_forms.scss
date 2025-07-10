@@ -15,7 +15,7 @@
 
   &__required {
     color: var(--error-color);
-    margin-left: 2px;
+    margin-left: var(--spacing-xxs);
   }
 
   &__input {

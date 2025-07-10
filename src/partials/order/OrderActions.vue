@@ -81,7 +81,7 @@ const formatDate = (date: Date | undefined): string => {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-mobile)) {
   .order-actions__buttons {
     flex-direction: row;
 

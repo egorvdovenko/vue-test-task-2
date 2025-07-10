@@ -101,8 +101,8 @@ const getConnectorStyle = (index: number) => {
   }
 
   &__circle {
-    width: 40px;
-    height: 40px;
+    width: var(--icon-2xl);
+    height: var(--icon-2xl);
     border-radius: 50%;
     background-color: var(--border-color);
     color: var(--text-secondary);
@@ -126,7 +126,7 @@ const getConnectorStyle = (index: number) => {
   &__connector {
     position: absolute;
     top: 20px;
-    height: 2px;
+    height: var(--spacing-xxs);
     background-color: var(--border-color);
     transition: background-color 0.3s ease;
     z-index: 1;
@@ -137,7 +137,7 @@ const getConnectorStyle = (index: number) => {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-mobile)) {
   .progress {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);

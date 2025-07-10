@@ -76,7 +76,7 @@ const handleStarClick = (rating: number) => {
 
   &__stars {
     display: flex;
-    gap: 2px;
+    gap: var(--spacing-xxs);
   }
 
   &__star {

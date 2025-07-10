@@ -117,7 +117,7 @@ onMounted(() => {
     grid-template-columns: 400px 1fr;
     gap: var(--spacing-2xl);
 
-    @media (max-width: 1024px) {
+    @media (max-width: var(--breakpoint-tablet)) {
       grid-template-columns: 1fr;
     }
   }

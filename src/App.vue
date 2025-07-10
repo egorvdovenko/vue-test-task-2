@@ -127,7 +127,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
     justify-content: center;
     padding: var(--spacing-md) 0;
 
-    @media (max-width: 768px) {
+    @media (max-width: var(--breakpoint-mobile)) {
       flex-direction: column;
       gap: var(--spacing-md);
       text-align: center;
