@@ -39,7 +39,7 @@ onMounted(() => {
       size="lg"
       class="order-view__loader"
     />
-    <div v-else class="l-container">
+    <div v-else class="container">
       <div class="order-view__header">
         <h1 class="order-view__title">{{ $t('orderForm.title') }}</h1>
         <div class="order-view__actions">

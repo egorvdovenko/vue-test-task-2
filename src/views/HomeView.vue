@@ -11,7 +11,7 @@ const goToOrder = () => {
 
 <template>
   <div class="home-view">
-    <div class="l-container">
+    <div class="container">
       <div class="home-view__content">
         <h1 class="home-view__title">{{ $t('home.title') }}</h1>
         <p class="home-view__description">{{ $t('home.description') }}</p>

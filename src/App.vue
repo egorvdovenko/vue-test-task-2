@@ -5,7 +5,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
 <template>
   <div id="app">
     <header class="app-header">
-      <div class="l-container">
+      <div class="container">
         <div class="app-header__content">
           <router-link to="/" class="app-header__logo">
             {{ $t('app.title') }}
@@ -28,7 +28,7 @@ import AppLanguageSwitcher from '@/components/AppLanguageSwitcher.vue'
       <router-view />
     </main>
     <footer class="app-footer">
-      <div class="l-container">
+      <div class="container">
         <div class="app-footer__content">
           <div class="app-footer__copyright">
             <p>© 2025 {{ $t('app.title') }}. {{ $t('footer.allRightsReserved') }}</p>

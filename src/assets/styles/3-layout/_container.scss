@@ -1,17 +1,13 @@
-.l-container {
+.container {
   max-width: var(--breakpoint-desktop);
   margin: 0 auto;
   padding: 0 var(--spacing-md);
-}
 
-.m-container {
-  max-width: var(--breakpoint-tablet);
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
+  @media (max-width: var(--breakpoint-tablet)) {
+    max-width: var(--breakpoint-tablet);
+  }
 
-.s-container {
-  max-width: var(--breakpoint-mobile);
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  @media (max-width: var(--breakpoint-mobile)) {
+    max-width: var(--breakpoint-mobile);
+  }
 }
