@@ -109,7 +109,7 @@ onMounted(() => {
 
   &__content {
     display: grid;
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 400px minmax(600px, 1fr);
     gap: var(--spacing-2xl);
 
     @media (max-width: 1024px) {
