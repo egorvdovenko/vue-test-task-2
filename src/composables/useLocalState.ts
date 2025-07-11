@@ -26,37 +26,3 @@ export function useLocalState<T>(
 
   return localData
 }
-
-export function useLocalFormFields(
-  sourceData: Ref<Record<string, unknown> | null | undefined>,
-  isEditMode: Ref<boolean>,
-  fieldNames: string[],
-) {
-  const localFields = ref<Record<string, string>>({})
-
-  fieldNames.forEach((field) => {
-    localFields.value[field] = ''
-  })
-
-  watch(
-    sourceData,
-    (newData) => {
-      if (newData) {
-        fieldNames.forEach((field) => {
-          localFields.value[field] = String(newData[field] || '')
-        })
-      }
-    },
-    { immediate: true },
-  )
-
-  watch(isEditMode, (isEdit) => {
-    if (isEdit && sourceData.value) {
-      fieldNames.forEach((field) => {
-        localFields.value[field] = String(sourceData.value![field] || '')
-      })
-    }
-  })
-
-  return localFields
-}

@@ -5,7 +5,7 @@ import { useOrderStore } from '@/stores/order'
 import AppCard from '@/components/AppCard.vue'
 import AppInput from '@/components/AppInput.vue'
 import AppTextarea from '@/components/AppTextarea.vue'
-import { useLocalFormFields } from '@/composables/useLocalState'
+import { useLocalState } from '@/composables/useLocalState'
 import { useFieldValidation } from '@/composables/useFieldValidation'
 import { useTextFormatting } from '@/composables/useTextFormatting'
 
@@ -14,21 +14,28 @@ const { t } = useI18n()
 
 const currentData = computed(() => orderStore.currentOrderData)
 
-const localFields = useLocalFormFields(
-  currentData,
+const localData = useLocalState(
+  computed(() =>
+    currentData.value
+      ? {
+          title: currentData.value.title || '',
+          description: currentData.value.description || '',
+        }
+      : null,
+  ),
   computed(() => orderStore.isEditMode),
-  ['title', 'description'],
+  { title: '', description: '' },
 )
 
 const titleValidation = useFieldValidation(
-  computed(() => localFields.value.title),
+  computed(() => localData.value.title),
   { required: true },
   computed(() => orderStore.isEditMode),
   { required: t('orderForm.validation.titleRequired') },
 )
 
 const descriptionValidation = useFieldValidation(
-  computed(() => localFields.value.description),
+  computed(() => localData.value.description),
   { required: true },
   computed(() => orderStore.isEditMode),
   { required: t('orderForm.validation.descriptionRequired') },
@@ -38,11 +45,11 @@ const { useFormattedDescription } = useTextFormatting()
 const formattedDescription = useFormattedDescription(computed(() => currentData.value?.description))
 
 const updateTitle = () => {
-  orderStore.updateField('title', localFields.value.title)
+  orderStore.updateField('title', localData.value.title)
 }
 
 const updateDescription = () => {
-  orderStore.updateField('description', localFields.value.description)
+  orderStore.updateField('description', localData.value.description)
 }
 </script>
 
@@ -53,7 +60,7 @@ const updateDescription = () => {
     </template>
     <div v-if="orderStore.isEditMode">
       <AppInput
-        v-model="localFields.title"
+        v-model="localData.title"
         :label="$t('orderForm.orderTitle')"
         :placeholder="$t('orderForm.orderTitle')"
         :error="titleValidation.error.value"
@@ -61,7 +68,7 @@ const updateDescription = () => {
         @update:modelValue="updateTitle"
       />
       <AppTextarea
-        v-model="localFields.description"
+        v-model="localData.description"
         :label="$t('orderForm.description')"
         :placeholder="$t('orderForm.description')"
         :error="descriptionValidation.error.value"
