@@ -7,7 +7,6 @@ import AppInput from '@/components/AppInput.vue'
 import AppTextarea from '@/components/AppTextarea.vue'
 import { useLocalState } from '@/composables/useLocalState'
 import { useFieldValidation } from '@/composables/useFieldValidation'
-import { useTextFormatting } from '@/composables/useTextFormatting'
 
 const orderStore = useOrderStore()
 const { t } = useI18n()
@@ -40,9 +39,6 @@ const descriptionValidation = useFieldValidation(
   computed(() => orderStore.isEditMode),
   { required: t('orderForm.validation.descriptionRequired') },
 )
-
-const { useFormattedDescription } = useTextFormatting()
-const formattedDescription = useFormattedDescription(computed(() => currentData.value?.description))
 
 const updateTitle = () => {
   orderStore.updateField('title', localData.value.title)
@@ -77,9 +73,6 @@ const updateDescription = () => {
       required
       @update:modelValue="updateDescription"
     >
-      <template #readonly>
-        <div v-html="formattedDescription"></div>
-      </template>
     </AppTextarea>
   </AppCard>
 </template>
