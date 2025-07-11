@@ -1,29 +1,3 @@
-<template>
-  <AppCard>
-    <template #header>
-      <h3>{{ $t('orderForm.status.title') }}</h3>
-    </template>
-    <AppProgress
-      :steps="statusSteps"
-      :current-status="currentStatus"
-      :status-order="[
-        OrderStatus.Draft,
-        OrderStatus.Published,
-        OrderStatus.InProgress,
-        OrderStatus.Completed,
-      ]"
-    />
-    <div v-if="orderStore.isEditMode">
-      <AppSelect
-        v-model="selectedStatus"
-        :label="$t('orderForm.status.changeStatus')"
-        :options="statusOptions"
-        @change="updateStatus"
-      />
-    </div>
-  </AppCard>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useOrderStore } from '@/stores/order'
@@ -75,3 +49,29 @@ const updateStatus = (value: string | number) => {
   orderStore.updateStatus(value as OrderStatus)
 }
 </script>
+
+<template>
+  <AppCard>
+    <template #header>
+      <h3>{{ $t('orderForm.status.title') }}</h3>
+    </template>
+    <AppProgress
+      :steps="statusSteps"
+      :current-status="currentStatus"
+      :status-order="[
+        OrderStatus.Draft,
+        OrderStatus.Published,
+        OrderStatus.InProgress,
+        OrderStatus.Completed,
+      ]"
+    />
+    <div v-if="orderStore.isEditMode">
+      <AppSelect
+        v-model="selectedStatus"
+        :label="$t('orderForm.status.changeStatus')"
+        :options="statusOptions"
+        @change="updateStatus"
+      />
+    </div>
+  </AppCard>
+</template>
