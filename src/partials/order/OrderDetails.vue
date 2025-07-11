@@ -58,38 +58,28 @@ const updateDescription = () => {
     <template #header>
       <h3>{{ $t('orderForm.title') }}</h3>
     </template>
-    <div v-if="orderStore.isEditMode">
-      <AppInput
-        v-model="localData.title"
-        :label="$t('orderForm.orderTitle')"
-        :placeholder="$t('orderForm.orderTitle')"
-        :error="titleValidation.error.value"
-        required
-        @update:modelValue="updateTitle"
-      />
-      <AppTextarea
-        v-model="localData.description"
-        :label="$t('orderForm.description')"
-        :placeholder="$t('orderForm.description')"
-        :error="descriptionValidation.error.value"
-        :rows="6"
-        required
-        @update:modelValue="updateDescription"
-      />
-    </div>
-    <div v-else>
-      <div class="form-group">
-        <label class="form-group__label">{{ $t('orderForm.orderTitle') }}</label>
-        <div class="form-group__value">
-          {{ currentData?.title || t('common.noData') }}
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-group__label">{{ $t('orderForm.description') }}</label>
-        <div class="form-group__value form-group__value--multiline">
-          <div v-html="formattedDescription"></div>
-        </div>
-      </div>
-    </div>
+    <AppInput
+      v-model="localData.title"
+      :label="$t('orderForm.orderTitle')"
+      :placeholder="$t('orderForm.orderTitle')"
+      :readonly="!orderStore.isEditMode"
+      :error="titleValidation.error.value"
+      required
+      @update:modelValue="updateTitle"
+    />
+    <AppTextarea
+      v-model="localData.description"
+      :label="$t('orderForm.description')"
+      :placeholder="$t('orderForm.description')"
+      :readonly="!orderStore.isEditMode"
+      :error="descriptionValidation.error.value"
+      :rows="6"
+      required
+      @update:modelValue="updateDescription"
+    >
+      <template #readonly>
+        <div v-html="formattedDescription"></div>
+      </template>
+    </AppTextarea>
   </AppCard>
 </template>
