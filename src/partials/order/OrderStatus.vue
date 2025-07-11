@@ -13,7 +13,7 @@
         OrderStatus.Completed,
       ]"
     />
-    <div v-if="orderStore.isEditMode" class="status-selector">
+    <div v-if="orderStore.isEditMode">
       <AppSelect
         v-model="selectedStatus"
         :label="$t('orderForm.status.changeStatus')"
@@ -75,11 +75,3 @@ const updateStatus = (value: string | number) => {
   orderStore.updateStatus(value as OrderStatus)
 }
 </script>
-
-<style lang="scss" scoped>
-.status-selector {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border-color);
-}
-</style>
