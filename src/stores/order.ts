@@ -62,9 +62,9 @@ export const useOrderStore = defineStore('order', () => {
         title: originalOrderData.value.title,
         description: originalOrderData.value.description,
         photo: originalOrderData.value.photo,
-        attachedFiles: originalOrderData.value.attachedFiles,
-        manufacturer: originalOrderData.value.manufacturer,
-        organization: originalOrderData.value.organization,
+        attachedFiles: [...originalOrderData.value.attachedFiles],
+        manufacturer: { ...originalOrderData.value.manufacturer },
+        organization: { ...originalOrderData.value.organization },
         status: originalOrderData.value.status,
       })
     )
