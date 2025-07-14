@@ -3,7 +3,6 @@ import { createPinia, setActivePinia } from 'pinia'
 import { useOrderStore } from '../order'
 import { OrderStatus, type AttachedFile } from '@/types/order'
 
-// Mock localStorage
 const mockLocalStorage = {
   getItem: vi.fn(),
   setItem: vi.fn(),
@@ -15,7 +14,6 @@ Object.defineProperty(window, 'localStorage', {
   value: mockLocalStorage,
 })
 
-// Mock order data
 const mockOrderData = {
   id: '1',
   title: 'Test Order',
