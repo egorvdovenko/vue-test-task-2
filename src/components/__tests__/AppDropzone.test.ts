@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AppDropzone from '../AppDropzone.vue'
 
-// Mock vue-i18n
 vi.mock('vue-i18n', () => ({
   useI18n: () => ({
     t: (key: string) => (key === 'common.dropZone' ? 'Drop files here' : key),
@@ -102,7 +101,6 @@ describe('AppDropzone', () => {
       const wrapper = mount(AppDropzone)
       const input = wrapper.find('input[type="file"]')
 
-      // Mock file selection
       const mockFiles = [new File(['content'], 'test.txt', { type: 'text/plain' })]
       Object.defineProperty(input.element, 'files', {
         value: mockFiles,
