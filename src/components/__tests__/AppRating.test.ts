@@ -11,7 +11,7 @@ describe('AppRating', () => {
 
       expect(wrapper.classes()).toContain('rating')
       expect(wrapper.find('.rating__value').text()).toBe('3')
-      expect(wrapper.findAll('.rating__star')).toHaveLength(5) // default max
+      expect(wrapper.findAll('.rating__star')).toHaveLength(5)
     })
 
     it('should show rating value by default', () => {
@@ -57,7 +57,7 @@ describe('AppRating', () => {
 
     it('should display zero when modelValue is undefined/null', () => {
       const wrapper = mount(AppRating, {
-        props: { modelValue: 0 }, // Test with 0 instead of null
+        props: { modelValue: 0 },
       })
 
       expect(wrapper.find('.rating__value').text()).toBe('0')
@@ -91,12 +91,10 @@ describe('AppRating', () => {
 
       const stars = wrapper.findAll('.rating__star')
 
-      // First 3 stars should be filled
       expect(stars[0].classes()).toContain('rating__star--filled')
       expect(stars[1].classes()).toContain('rating__star--filled')
       expect(stars[2].classes()).toContain('rating__star--filled')
 
-      // Last 2 stars should not be filled
       expect(stars[3].classes()).not.toContain('rating__star--filled')
       expect(stars[4].classes()).not.toContain('rating__star--filled')
     })
@@ -108,7 +106,6 @@ describe('AppRating', () => {
 
       const stars = wrapper.findAll('.rating__star')
 
-      // 3.4 rounds to 3, so first 3 stars should be filled
       expect(stars[0].classes()).toContain('rating__star--filled')
       expect(stars[1].classes()).toContain('rating__star--filled')
       expect(stars[2].classes()).toContain('rating__star--filled')
@@ -123,7 +120,6 @@ describe('AppRating', () => {
 
       const stars = wrapper.findAll('.rating__star')
 
-      // 3.6 rounds to 4, so first 4 stars should be filled
       expect(stars[0].classes()).toContain('rating__star--filled')
       expect(stars[1].classes()).toContain('rating__star--filled')
       expect(stars[2].classes()).toContain('rating__star--filled')
@@ -177,12 +173,10 @@ describe('AppRating', () => {
       const stars = wrapper.findAll('.rating__star')
       expect(stars).toHaveLength(10)
 
-      // First 7 stars should be filled
       for (let i = 0; i < 7; i++) {
         expect(stars[i].classes()).toContain('rating__star--filled')
       }
 
-      // Last 3 stars should not be filled
       for (let i = 7; i < 10; i++) {
         expect(stars[i].classes()).not.toContain('rating__star--filled')
       }
@@ -327,7 +321,7 @@ describe('AppRating', () => {
       })
 
       const stars = wrapper.findAll('.rating__star')
-      await stars[3].trigger('click') // Click 4th star (rating 4)
+      await stars[3].trigger('click')
 
       expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
       expect(wrapper.emitted('update:modelValue')?.[0][0]).toBe(4)
@@ -357,15 +351,12 @@ describe('AppRating', () => {
 
       const stars = wrapper.findAll('.rating__star')
 
-      // Click first star
       await stars[0].trigger('click')
       expect(wrapper.emitted('update:modelValue')?.[0][0]).toBe(1)
 
-      // Click third star
       await stars[2].trigger('click')
       expect(wrapper.emitted('update:modelValue')?.[1][0]).toBe(3)
 
-      // Click fifth star
       await stars[4].trigger('click')
       expect(wrapper.emitted('update:modelValue')?.[2][0]).toBe(5)
     })
@@ -419,7 +410,6 @@ describe('AppRating', () => {
         },
       })
 
-      // All 5 stars should be filled even though rating is 8
       const stars = wrapper.findAll('.rating__star')
       expect(stars).toHaveLength(5)
       stars.forEach((star) => {
@@ -447,7 +437,6 @@ describe('AppRating', () => {
         },
       })
 
-      // 0.1 rounds to 0, so no stars should be filled
       const stars = wrapper.findAll('.rating__star')
       stars.forEach((star) => {
         expect(star.classes()).not.toContain('rating__star--filled')
