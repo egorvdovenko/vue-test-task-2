@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AppSelect from '../AppSelect.vue'
 
-// Mock crypto.randomUUID
 Object.defineProperty(global, 'crypto', {
   value: {
     randomUUID: () => 'test-uuid-123',
@@ -41,7 +40,7 @@ describe('AppSelect', () => {
       })
 
       const options = wrapper.findAll('option')
-      // Should have 4 options (no placeholder)
+
       expect(options).toHaveLength(4)
       expect(options[0].text()).toBe('Option 1')
       expect(options[1].text()).toBe('Option 2')
@@ -188,7 +187,7 @@ describe('AppSelect', () => {
       })
 
       const options = wrapper.findAll('option')
-      expect(options).toHaveLength(5) // 4 options + placeholder
+      expect(options).toHaveLength(5)
       expect(options[0].text()).toBe('Select an option')
       expect(options[0].attributes('value')).toBe('')
       expect(options[0].attributes('disabled')).toBeDefined()
@@ -203,7 +202,7 @@ describe('AppSelect', () => {
       })
 
       const options = wrapper.findAll('option')
-      expect(options).toHaveLength(4) // Only the actual options
+      expect(options).toHaveLength(4)
     })
   })
 
@@ -219,7 +218,7 @@ describe('AppSelect', () => {
       const options = wrapper.findAll('option')
       expect(options[0].attributes('disabled')).toBeUndefined()
       expect(options[1].attributes('disabled')).toBeUndefined()
-      expect(options[2].attributes('disabled')).toBeDefined() // option3 is disabled
+      expect(options[2].attributes('disabled')).toBeDefined()
       expect(options[3].attributes('disabled')).toBeUndefined()
     })
   })
@@ -412,7 +411,6 @@ describe('AppSelect', () => {
         },
       })
 
-      // In readonly mode, it should show the label of the selected option
       expect(wrapper.find('.form-group__value').text()).toBe('Option 2')
     })
 
@@ -431,13 +429,12 @@ describe('AppSelect', () => {
     it('should handle string-number matching', () => {
       const wrapper = mount(AppSelect, {
         props: {
-          modelValue: '42', // String value
+          modelValue: '42',
           options: mockOptions,
           readonly: true,
         },
       })
 
-      // Should still match the numeric option due to string conversion
       expect(wrapper.find('.form-group__value').text()).toBe('Number Option')
     })
   })
